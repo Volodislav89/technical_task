@@ -1,0 +1,21 @@
+db.getCollection('voicePrint').insertMany(
+[
+  {
+    "_id" : "5f99eb8d12761c096677d771",
+    "voicePrint" : "pqdHdsmg1oZOXABhODmUSrzOyq6mHXpU6mXSQp2o",
+    "userHashCode" : -862975379,
+    "_class" : "com.zvl.technical_task.model.VoicePrint"
+  },
+  {
+    "_id" : "5f99ebd012761c096677d772",
+    "voicePrint" : "KbccAsBS0X5hGWtkMEie8TotmLL23yyoasTP3Mf4",
+    "userHashCode" : -1984670078,
+    "_class" : "com.zvl.technical_task.model.VoicePrint"
+  },
+  {
+    "_id" : "5f99ebf912761c096677d773",
+    "voicePrint" : "udfYqNxDBZCGbA7vvU34R8qOTIXE2cBvdoBaFsWF",
+    "userHashCode" : 920510224,
+    "_class" : "com.zvl.technical_task.model.VoicePrint"
+  }
+]);
