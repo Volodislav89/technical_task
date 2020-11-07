@@ -11,6 +11,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @AllArgsConstructor
@@ -31,6 +34,23 @@ public class UserController {
         voicePrintService.saveNewVoicePrint(voicePrint);
         log.info("Invocation of saveNewVoicePrint() method from VoicePrintService.");
         return user;
+    }
+
+    @PostMapping("/list")
+    public List<UserVoicePrintDTO> saveUserAndVoicePrint(@RequestBody List<UserVoicePrintDTO> userVoicePrintDTOs) {
+        List<UserVoicePrintDTO> printDTOList = new ArrayList<>();
+        for (UserVoicePrintDTO voicePrintDTO : userVoicePrintDTOs) {
+            log.info("Invocation of saveUserAndVoicePrint() method.");
+            User user = userService.saveNewUser(voicePrintDTO.getUser());
+            log.info("Invocation of saveNewUser() method from UserService.");
+            VoicePrint voicePrint = voicePrintDTO.getVoicePrint();
+            voicePrint.setUserHashCode(user.hashCode());
+            log.info("setting userHasCode to voicePrint");
+            VoicePrint savedVoicePrint = voicePrintService.saveNewVoicePrint(voicePrint);
+            log.info("Invocation of saveNewVoicePrint() method from VoicePrintService.");
+            printDTOList.add(new UserVoicePrintDTO(user, savedVoicePrint));
+        }
+        return printDTOList;
     }
 
     @GetMapping("/{id}")
